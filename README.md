@@ -1,3 +1,6 @@
+Git commands: git add . , git commit -am "" , git push , git status , git log --oneline ,  git diff 5c3de53~1 5c3de53 calculator.py , git stash
+git revert 5c3de53 , git stash pop
+
 git log --oneline
 af86521 (HEAD -> main) feat: Add divide function with zero check
 5c3de53 fix: Optimize subtract function logic (introducing bug)
@@ -45,7 +48,14 @@ It safely created a commit that reversed the buggy code, while preserving collab
 git reset would have risked disrupting other developers’ work and is not appropriate in this case.
 ]
 
-5- Explain in your deliverables: What is the difference between git stash pop and git stash apply? Why did you choose pop (or apply)?
+Why not git reset --hard in this case?
+
+Rewrites commit history, which is unsafe for shared branches
+If already pushed, teammates' histories will diverge, causing major conflicts
+Requires force-push (git push --force), which can accidentally delete others' work
+-----------
+
+4- Explain in your deliverables: What is the difference between git stash pop and git stash apply? Why did you choose pop (or apply)?
 
 | Command           | What it does                                                           |
 | ----------------- | ---------------------------------------------------------------------- |
@@ -56,7 +66,5 @@ Why did I choose git stash pop?
 I chose git stash pop because:
 
 I was ready to resume working on the changes I stashed.
-
 I no longer needed to keep the stash entry—restoring it once was enough.
-
 It helped me keep the stash list clean and avoid clutter from unused entries.
